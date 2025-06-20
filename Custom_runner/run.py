@@ -1,3 +1,6 @@
+"""
+I wrote this code myself, and it was challenging because I restricted myself from looking at the source code of the Runner class. Every line was written solely by me. This CustomRunner class allows users to perform tool calling, use input and output guardrails, handle handoffs, and more.
+"""
 from agents import (
     RunConfig, 
     InputGuardrail, 
@@ -33,7 +36,7 @@ from typing import TypeVar, List, Any
 import asyncio
 
 
-DEFAULT_MAX_TURN = 2
+DEFAULT_MAX_TURN = 10
 TContext = TypeVar("TContext")
 
 class CustomRunner:
