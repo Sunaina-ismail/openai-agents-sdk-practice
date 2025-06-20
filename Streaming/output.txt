@@ -1,0 +1,171 @@
+1 -> AgentUpdatedStreamEvent:
+        new_agent=Agent(...),
+        type='agent_updated_stream_event'
+
+2 -> RawResponsesStreamEvent:
+        data=ResponseCreatedEvent(
+            ...,
+            sequence_number=0,
+            type='response.created'
+        ),
+        type='raw_response_event'
+
+3 -> RawResponsesStreamEvent:
+        data=ResponseOutputItemAddedEvent(
+            item=ResponseFunctionToolCall(
+                ...,
+                sequence_number=1,
+                type='response.output_item.added'
+            )
+        ),
+        type='raw_response_event'
+
+4 -> RawResponsesStreamEvent:
+        data=ResponseFunctionCallArgumentsDeltaEvent(
+            sequence_number=2,
+            type='response.function_call_arguments.delta'
+        ),
+        type='raw_response_event'
+
+5 -> RawResponsesStreamEvent:
+        data=ResponseOutputItemDoneEvent(
+            item=ResponseFunctionToolCall(
+                ...,
+                sequence_number=3,
+                type='response.output_item.done'
+            )
+        ),
+        type='raw_response_event'
+
+6 -> RawResponsesStreamEvent:
+        data=ResponseCompletedEvent(
+            response=Response(
+                ...,
+                sequence_number=4,
+                type='response.completed'
+            )
+        ),
+        type='raw_response_event'
+
+7 -> RunItemStreamEvent:
+        name='tool_called',
+        item=ToolCallItem(
+            agent=Agent(...),
+            raw_item=ResponseFunctionToolCall(...),
+             type='tool_call_item'
+        ),
+         type='run_item_stream_event'
+
+8 -> RunItemStreamEvent:
+        name='tool_output',
+        item=ToolCallOutputItem(
+            agent=Agent(...),
+            raw_item={
+                'call_id': '',
+                'output': '3',
+                'type': 'function_call_output'
+            },
+            output=3,
+            type='tool_call_output_item'
+        ),
+        type='run_item_stream_event'
+
+9 -> RawResponsesStreamEvent:
+        data=ResponseCreatedEvent(
+            response=Response(...),
+            sequence_number=0,
+            type='response.created'
+        ),
+        type='raw_response_event'
+
+10 -> RawResponsesStreamEvent:
+        data=ResponseOutputItemAddedEvent(
+            item=ResponseOutputMessage(...),
+            sequence_number=1,
+            type='response.output_item.added'
+        ),
+        type='raw_response_event'
+
+11 -> RawResponsesStreamEvent:
+        data=ResponseContentPartAddedEvent(
+            ...,
+            sequence_number=2,
+            type='response.content_part.added'
+        ),
+        type='raw_response_event'
+
+12 -> RawResponsesStreamEvent:
+        data=ResponseTextDeltaEvent(
+            ...,
+            sequence_number=3,
+            type='response.output_text.delta'
+        ),
+        type='raw_response_event'
+
+13 -> RawResponsesStreamEvent:
+        data=ResponseTextDeltaEvent(
+            ...,
+            sequence_number=4,
+            type='response.output_text.delta'
+        ),
+        type='raw_response_event'
+
+14 -> RawResponsesStreamEvent:
+        data=ResponseTextDeltaEvent(
+            ...,
+            sequence_number=5,
+            type='response.output_text.delta'
+        ),
+        type='raw_response_event'
+
+15 -> RawResponsesStreamEvent:
+        data=ResponseTextDeltaEvent(
+            ...,
+            sequence_number=6,
+            type='response.output_text.delta'
+        ),
+        type='raw_response_event'
+
+16 -> RawResponsesStreamEvent:
+        data=ResponseTextDeltaEvent(
+            ...,
+            sequence_number=7,
+            type='response.output_text.delta'
+        ),
+        type='raw_response_event'
+
+17 -> RawResponsesStreamEvent:
+        data=ResponseContentPartDoneEvent(
+            ...,
+            sequence_number=8,
+            type='response.content_part.done'
+        ),
+        type='raw_response_event'
+
+18 -> RawResponsesStreamEvent:
+        data=ResponseOutputItemDoneEvent(
+            item=ResponseOutputMessage(...),
+            sequence_number=9,
+            type='response.output_item.done'
+        ),
+        type='raw_response_event'
+
+19 -> RawResponsesStreamEvent:
+        data=ResponseCompletedEvent(
+            response=Response(...),
+            sequence_number=10,
+            type='response.completed'
+        ),
+        type='raw_response_event'
+
+20 -> RunItemStreamEvent:
+        name='message_output_created',
+        item=MessageOutputItem(
+            agent: Agent(...),
+            raw_item=ResponseOutputMessage(
+                ...,
+                content:[ResponseOutputText]
+            ),
+            type='message_output_item'
+        ),
+        type='run_item_stream_event'
