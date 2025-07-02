@@ -7,8 +7,7 @@
 
 **This is Bold Text**
 
-*This is italic text*
-
+*This is italic text*  
 
 ## Fruits Unordered List
 - Apple
@@ -23,12 +22,15 @@
 ## Fruits Ordered List
 1. Apple
 2. Banana
-3. Mango
+4. Banana
 
-### [***Go to Google***](https://www.google.com)
+### [**Go to Google**](https://www.google.com)
 
 ## Image
-![Man Pic](/download.jpeg)
+![Man Pic](/download.jpeg "hello")
 
+[Link text][1]
 ## Image with links
-[![Tiger Image](/tiger.jpeg)](https://www.google.com)
+[![Tiger Image](/tiger.jpeg)](https://www.google.com)  
+
+<https://www.google.com>

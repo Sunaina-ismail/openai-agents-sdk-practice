@@ -32,14 +32,13 @@ triage_agent = Agent(
     handoffs=[french_agent, spanish_agent, english_agent],
 )
 
-
 async def main():
     # We'll create an ID for this conversation, so we can link each trace
     conversation_id = str(uuid.uuid4().hex[:16])
 
     msg = input("Hi! We speak French, Spanish and English. How can I help? ")
     agent = triage_agent
-    inputs: list[TResponseInputItem] = [{"content": msg, "role": "user"}]
+    inputs: list[TResponseInputItem] = [{"content": msg, "role": "user"}] #type: ignore
 
     while True:
         # Each conversation turn is a single trace. Normally, each input from the user would be an

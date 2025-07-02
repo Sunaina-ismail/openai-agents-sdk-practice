@@ -1,7 +1,8 @@
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, ModelResponse
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, RunConfig, set_default_openai_api, set_default_openai_client
 from dotenv import load_dotenv
-# from rich import print
+from rich import print
 import os
+import asyncio
 
 load_dotenv()
 set_tracing_disabled(disabled=True)
@@ -13,16 +14,34 @@ client = AsyncOpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai"
 )
 
-model = OpenAIChatCompletionsModel(
-    openai_client=client,
-    model="gemini-1.5-flash",
+config = RunConfig(
+    model=OpenAIChatCompletionsModel(
+        model="gemini-2.0-flash",
+        openai_client=client
+    )
 )
 
-agent = Agent(
-    name="Mathematician", 
-    instructions="You are a helpful assistant", 
-    model=model, 
+story_writer = Agent(
+    name="Story Writer", 
+    instructions="You are a story writer", 
 )
 
-result = Runner.run_sync(starting_agent=agent, input="What is the capital of Pakistan")
-print(result)
+rating_agent = Agent(
+    name="Rating Agent", 
+    instructions="You are given the story you have to rate it out of 10", 
+)
+
+async def main():
+    story = await Runner.run(
+        starting_agent=story_writer, 
+        input="Write a 5 line story on Agentic AI", 
+        run_config=config
+    )
+    rating = await Runner.run(
+        starting_agent=rating_agent, 
+        input=story.to_input_list(), 
+        run_config=config
+    )
+    print(rating.final_output)
+
+asyncio.run(main())

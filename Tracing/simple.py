@@ -2,8 +2,8 @@ import os
 from openai import AsyncOpenAI
 from agents import Agent, Runner, trace, set_default_openai_api, set_default_openai_client, set_trace_processors
 from agents.tracing.processor_interface import TracingProcessor
-from pprint import pprint
-# Custom trace processor to collect trace data locally
+from rich import print
+# Custom trace processor to collect trace data locally  
 class LocalTraceProcessor(TracingProcessor):
     def __init__(self):
         self.traces = []
@@ -20,12 +20,12 @@ class LocalTraceProcessor(TracingProcessor):
         self.spans.append(span)
         print(f"Span started: {span.span_id}")
         print(f"Span details: ")
-        pprint(span.export())
+        print(span.export())
 
     def on_span_end(self, span):
         print(f"Span ended: {span.span_id}")
         print(f"Span details:")
-        pprint(span.export())
+        print(span.export())
 
     def force_flush(self):
         print("Forcing flush of trace data")
@@ -40,17 +40,9 @@ class LocalTraceProcessor(TracingProcessor):
         for span in self.spans:
             print(span.export())
 
-BASE_URL = os.getenv("BASE_URL") or "https://generativelanguage.googleapis.com/v1beta/openai/"
-API_KEY = os.getenv("GEMINI_API_KEY") or userdata.get("GEMINI_API_KEY")
-MODEL_NAME = os.getenv("MODEL_NAME") or "gemini-2.0-flash"
-
-
-if not BASE_URL or not API_KEY or not MODEL_NAME:
-    raise ValueError("Please set BASE_URL, GEMINI_API_KEY, MODEL_NAME via env var or code.")
-
-# Create OpenAI client
+API_KEY=os.environ.get("GEMINI_API_KEY")
 client = AsyncOpenAI(
-    base_url=BASE_URL,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai",
     api_key=API_KEY,
 )
 
@@ -64,7 +56,7 @@ set_trace_processors([local_processor])
 
 # Example function to run an agent and collect traces
 async def main():
-    agent = Agent(name="Example Agent", instructions="Perform example tasks.", model=MODEL_NAME)
+    agent = Agent(name="Example Agent", instructions="Perform example tasks.", model="gemini-2.0-flash")
     
     with trace("Example workflow"):
         first_result = await Runner.run(agent, "Start the task")

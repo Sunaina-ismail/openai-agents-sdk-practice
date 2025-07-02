@@ -1,6 +1,7 @@
 """
 I wrote this code myself, and it was challenging because I restricted myself from looking at the source code of the Runner class. Every line was written solely by me. This CustomRunner class allows users to perform tool calling, use input and output guardrails, handle handoffs, and more.
 """
+
 from agents import (
     RunConfig, 
     InputGuardrail, 
@@ -31,7 +32,6 @@ from agents._run_impl import (
     NextStepHandoff, 
     NextStepRunAgain
 )
-from rich import print
 from typing import TypeVar, List, Any
 import asyncio
 
@@ -164,6 +164,7 @@ class CustomRunner:
         for done in asyncio.as_completed(tasks):
             result = await done
             if result.output.tripwire_triggered:
+                done.cancel()
                 raise InputGuardrailTripwireTriggered(result)
 
     @classmethod
@@ -189,6 +190,7 @@ class CustomRunner:
         for done in asyncio.as_completed(tasks):
             result = await done
             if result.output.tripwire_triggered:
+                done.cancel()
                 raise OutputGuardrailTripwireTriggered(result)
     
     @classmethod

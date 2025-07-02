@@ -1,0 +1,138 @@
+ Ultimate To-Do List for OpenAI Agents SDK Level 1 Quiz
+
+🧠 1. Core Concepts of the OpenAI Agents SDK 
+🔹 General Philosophy
+Python-first design for orchestration 
+
+SDK's purpose in managing agent loops and tool calls 
+
+🔹 Agent Components
+Agents: 
+    Purpose and structure 
+
+Tools: 
+    Usage, 
+    structure(name, description, params_json_schema, on_invoked_tool, strict_json_schema), 
+    return types (LLM tak hamesha str ki format ma tool output jayega) 
+
+Handoffs: 
+    What they are and how they enable multi-agent collaboration??  
+
+Context Objects: Managing and using context
+
+🔹 Execution Flow
+Agent Loop execution
+
+Runner.run_sync() vs. streaming mode
+
+Error handling in tool execution
+
+Agent Cloning (reusing or modifying agent configuration)
+
+🔹 Typed Inputs/Outputs
+Pydantic Models for validation
+
+JSON Schemas
+
+Use of @tool decorator with Pydantic input models
+
+🔹 Advanced Features
+Dynamic instructions
+
+Guardrails
+
+Tracing
+
+✍️ 2. Prompt Engineering
+🔹 Prompt Techniques
+Clear instruction design
+
+Chain-of-Thought (CoT) prompting
+
+Tree-of-Thought (ToT) prompting
+
+Managing sensitive data via:
+
+Personas
+
+Prompt crafting
+
+🔹 Prompt Engineering Resources
+OpenAI Cookbook: Prompting Guide
+
+Kaggle Whitepaper: Prompt Engineering
+
+🧰 3. Python Programming (Intermediate)
+🔹 Required Skills
+Functions
+
+Decorators (especially @tool)
+
+Dataclasses
+
+Type hints
+
+Exception handling
+
+Async/Await usage and differences from sync
+
+Using libraries:
+
+requests
+
+pydantic
+
+🧠 4. Basic AI & LLM Concepts
+🔹 Understanding LLMs
+What is an LLM?
+
+Common LLM parameters:
+
+temperature
+
+top_k
+
+top_p
+
+🔹 OpenAI API Basics
+Chat Completions API
+
+Assistants API
+
+🔗 5. Markdown Syntax
+🔹 Focus Areas
+Links: [text](url)
+
+Images: ![alt](image_url)
+
+Lists (ordered/unordered)
+
+Refer to:
+
+Basic Syntax
+
+Cheat Sheet
+
+⚙️ 6. Software Development & API Knowledge
+🔹 Concepts to Review
+APIs: What they are and how they are used
+
+JSON schemas
+
+Data validation frameworks like Pydantic
+
+📘 7. Required Study Material (Must Visit Links)
+Link	Description
+OpenAI Agents SDK Docs	Full official documentation
+Multi-Agent Portfolio Example	Hands-on SDK use
+Prompting Guide	Deep dive into prompting
+Kaggle Whitepaper	Research-backed prompt techniques
+Markdown Guide	Basic syntax reference
+Markdown Cheat Sheet	Quick reference
+Panaverse Repo	Community learning content
+
+📊 Difficulty Breakdown
+Level 1: 6/10 — Foundational knowledge, conceptual clarity, and practical examples.
+
+Level 2 (FYI): 9/10 — Deep SDK internals, advanced debugging, etc.
+

@@ -55,5 +55,5 @@ triage_agent = Agent(
 result = Runner.run_sync(starting_agent=triage_agent, input="What is 2 + 2")
 # print(result.last_agent)
 print(result.final_output)
-
+print(result.new_items)
 

@@ -46,7 +46,7 @@ guardrail_agent = Agent[MathHomeworkOutput](
     model=model
 )
 
-@input_guardrail
+@input_guardrail(name="math")
 async def math_guardrail( 
     ctx: RunContextWrapper[MathHomeworkOutput], agent: Agent, input: str | list[TResponseInputItem]
 ) -> GuardrailFunctionOutput:

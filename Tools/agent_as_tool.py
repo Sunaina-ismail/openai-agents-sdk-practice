@@ -1,8 +1,9 @@
-from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled
+from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled, enable_verbose_stdout_logging
 from dotenv import load_dotenv
 from rich import print
 import os
 
+# enable_verbose_stdout_logging()
 set_tracing_disabled(disabled=True)
 load_dotenv()
 
@@ -54,4 +55,3 @@ result = Runner.run_sync(
 )
 
 print(result.final_output)
-print(result.new_items)

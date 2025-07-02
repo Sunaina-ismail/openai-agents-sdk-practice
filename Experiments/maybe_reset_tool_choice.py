@@ -26,25 +26,25 @@ class OutputType(BaseModel):
 tool_use_tracker=AgentToolUseTracker()
 
 #? CASE 01
-# first_agent = Agent(
-#     name="Mathematician", 
-#     instructions="You are math expert", 
-#     model=model,
-#     model_settings=ModelSettings(
-#         tool_choice="required"
-#     ),
-#     reset_tool_choice=True
-# )
-# print(first_agent.model_settings) #! Orignal model_settings of first_agent
+first_agent = Agent(
+    name="Mathematician", 
+    instructions="You are math expert", 
+    model=model,
+    model_settings=ModelSettings(
+        tool_choice="required"
+    ),
+    reset_tool_choice=True
+)
+print(first_agent.model_settings) #! Orignal model_settings of first_agent
 
-# tool_use_tracker.add_tool_use(agent=first_agent, tool_names=[]) 
+tool_use_tracker.add_tool_use(agent=first_agent, tool_names=[]) 
 
-# model_settings=RunImpl().maybe_reset_tool_choice(
-#     agent=first_agent,
-#     model_settings=first_agent.model_settings,
-#     tool_use_tracker=tool_use_tracker
-# )
-# print(model_settings) #! Remains same because tool_names is empty + reset_tool_choice is True
+model_settings=RunImpl().maybe_reset_tool_choice(
+    agent=first_agent,
+    model_settings=first_agent.model_settings,
+    tool_use_tracker=tool_use_tracker
+)
+print(model_settings) #! Remains same because tool_names is empty + reset_tool_choice is True
 
 
 # #? CASE 02
@@ -69,24 +69,24 @@ model_settings=RunImpl().maybe_reset_tool_choice(
 print(model_settings) #! model setting is overrided (tool_choice=None) because tool_names has the tool_name + reset_tool_choice is True
 
 # #? CASE 03
-# third_agent = Agent(
-#     name="Mathematician", 
-#     instructions="You are math expert", 
-#     model=model,
-#     model_settings=ModelSettings(
-#         tool_choice="required"
-#     ),
-#     reset_tool_choice=False
-# )
+third_agent = Agent(
+    name="Mathematician", 
+    instructions="You are math expert", 
+    model=model,
+    model_settings=ModelSettings(
+        tool_choice="required"
+    ),
+    reset_tool_choice=False
+)
 
-# print(third_agent.model_settings) #! Orignal model_settings of second_agent
+print(third_agent.model_settings) #! Orignal model_settings of second_agent
 
-# tool_use_tracker.add_tool_use(agent=third_agent, tool_names=["dummy"]) 
-# model_settings=RunImpl().maybe_reset_tool_choice(
-#     agent=third_agent,
-#     model_settings=third_agent.model_settings,
-#     tool_use_tracker=tool_use_tracker
-# )
-# print(model_settings) #! model setting remains same because reset_tool_choice is False
+tool_use_tracker.add_tool_use(agent=third_agent, tool_names=["dummy"]) 
+model_settings=RunImpl().maybe_reset_tool_choice(
+    agent=third_agent,
+    model_settings=third_agent.model_settings,
+    tool_use_tracker=tool_use_tracker
+)
+print(model_settings) #! model setting remains same because reset_tool_choice is False
 
 

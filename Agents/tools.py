@@ -1,11 +1,10 @@
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, function_tool, enable_verbose_stdout_logging, ModelSettings, RunContextWrapper
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, function_tool, enable_verbose_stdout_logging, ModelSettings
 from dotenv import load_dotenv
 from rich import print
 from pydantic import BaseModel
-import os, asyncio
-from agents.extensions.visualization import draw_graph
+import os
 
-# enable_verbose_stdout_logging()
+enable_verbose_stdout_logging()
 load_dotenv()
 set_tracing_disabled(disabled=True)
 
@@ -18,16 +17,13 @@ client = AsyncOpenAI(
 
 model = OpenAIChatCompletionsModel(
     openai_client=client,
-    model="gemini-1.5-flash",
+    model="gemini-2.0-flash",
 )
 
-class OutputType(BaseModel):
-    result: str
 
-@function_tool
+@function_tool(name_override="add")
 def add(a: int, b: int) -> int:
     """Add two numbers
-
     Args:
         a: first number
         b: second number
@@ -35,15 +31,34 @@ def add(a: int, b: int) -> int:
     Returns:
         int: The sum of the two numbers.
     """
-    print("add function executed")
+
     return a + b
+
+@function_tool
+def subtract(a: int, b: int) -> int:
+    """Subtract two numbers
+    Args:
+        a: first number
+        b: second number
+        
+    Returns:
+        int: The difference of the two numbers.
+    """
+
+    return a - b
+
 
 agent = Agent(
     name="Mathematician", 
-    instructions="You are math expert", 
+    instructions=(
+        "You are math expert "
+        "You also greet back peoples if they greet you. "
+    ), 
     model=model, 
-    tools=[add],
+    tools=[add, subtract],
+    model_settings=ModelSettings(
+        tool_choice="subtract"
+    ),
 )
-
-result = Runner.run_sync(starting_agent=agent, input="What is 2+2")
+result = Runner.run_sync(starting_agent=agent, input="Hello")
 print(result.final_output)

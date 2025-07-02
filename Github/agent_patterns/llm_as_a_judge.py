@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 from agents import Agent, ItemHelpers, Runner, TResponseInputItem, trace
+from rich import print
 
 """
 This example shows the LLM as a judge pattern. The first agent generates an outline for a story.
@@ -32,7 +33,6 @@ evaluator = Agent[None](
     instructions=(
         "You evaluate a story outline and decide if it's good enough."
         "If it's not good enough, you provide feedback on what needs to be improved."
-        "Never give it a pass on the first try."
     ),
     output_type=EvaluationFeedback,
 )
@@ -68,7 +68,6 @@ async def main() -> None:
             print("Re-running with feedback")
 
             input_items.append({"content": f"Feedback: {result.feedback}", "role": "user"})
-
     print(f"Final story outline: {latest_outline}")
 
 

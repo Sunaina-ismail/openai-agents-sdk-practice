@@ -1,6 +1,7 @@
 from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled, AgentOutputSchema
 from dotenv import load_dotenv
 from pydantic import BaseModel
+from typing import Optional
 import os
 
 set_tracing_disabled(disabled=True)
@@ -21,7 +22,7 @@ model = OpenAIChatCompletionsModel(
 class Developer(BaseModel):
     is_coding_related: bool
     is_technical_person: bool
-    reason: str
+    reason: Optional[str] = None
 
 agent = Agent(
     name="Assistant",

@@ -67,5 +67,3 @@ agent=Agent[User](
 data = StopAtTools(
     stop_at_tool_names=["abc"]
 )
-from dataclasses import dataclass, field
-from typing import ClassVar

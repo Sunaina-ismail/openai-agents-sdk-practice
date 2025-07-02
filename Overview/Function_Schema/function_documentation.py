@@ -3,7 +3,7 @@ from rich import print
 
 def sum_in_google_docstring(a: int, b: int) -> int:
     """Add two numbers.
-
+    
     Args:
         a (int): The first number.
         b (int): The second number.
@@ -47,6 +47,7 @@ def sum_in_sphinx_docstring(a: int, b: int) -> int:
     :returns: The sum of the two numbers.
     :rtype: int
     """
+    
     return a + b
 
 docs_google=generate_func_documentation(

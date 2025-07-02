@@ -21,9 +21,7 @@ first_agent = Agent(
     model=model
 )
 
-second_agent = first_agent.clone(
-    name="General Knowledge Assistant"
-)
+second_agent = first_agent.clone()
 
 result = Runner.run_sync(starting_agent=second_agent, input="Tell me about Sir Zia Khan, an AI professor")
 print(result.last_agent)

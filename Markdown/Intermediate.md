@@ -7,7 +7,7 @@ print("Hello World")
 ```
 
 ```javascript
-print("Hello World")
+console.log("Hello World")
 ```
 ***
 Horizontal Line
@@ -18,8 +18,7 @@ Horizontal Line
 | Ali  | 24  |
 | Sara | 22  |
 
-
-[*] Task Done
+- {} Task Done
 ***
 [] Task remaining
 ***

@@ -24,11 +24,14 @@ async def main():
         instructions="You are a helpful assistant.",
         model=model
     )
-
-    result = Runner.run_streamed(agent, input="Please tell me 5 jokes.")
+    # print("Started")
+    # await asyncio.sleep(10)
+    # print("Ended")
+    result = Runner.run_streamed(agent, input="Write an 1000 words essay on Iran Current War")
     async for event in result.stream_events():
         if(event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent)):
-            print(event.data, end="", flush=True)
+            pass
+            # print(event.data.delta, end="", flush=True)
 
 
 if __name__ == "__main__":

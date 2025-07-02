@@ -1,4 +1,4 @@
-from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled, AgentOutputSchema, AgentOutputSchemaBase
+from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled, AgentOutputSchema
 from dotenv import load_dotenv
 from pydantic import BaseModel
 import os
