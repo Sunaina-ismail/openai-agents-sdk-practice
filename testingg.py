@@ -55,15 +55,15 @@ agent=Agent[User](
     ),
 )
 
-# result=Runner.run_sync(
-#     starting_agent=agent,
-#     input="greet the user",
-#     context=user_1
-# )
-
-# print(result.final_output)
-# print(result.raw_responses)
-
-data = StopAtTools(
-    stop_at_tool_names=["abc"]
+result=Runner.run_sync(
+    starting_agent=agent,
+    input="greet the user",
+    context=user_1
 )
+
+print(result.final_output)
+print(result.raw_responses)
+
+# data = StopAtTools(
+#     stop_at_tool_names=["abc"]
+# )
